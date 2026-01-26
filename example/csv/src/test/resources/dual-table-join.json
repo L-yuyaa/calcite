@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "defaultSchema": "mysql_db",
+  "schemas": [
+    {
+      "name": "mysql_db",
+      "type": "custom",
+      "factory": "org.apache.calcite.adapter.jdbc.JdbcSchema$Factory",
+      "operand": {
+        "jdbcDriver": "com.mysql.cj.jdbc.Driver",
+        "jdbcUrl": "jdbc:mysql://localhost:3306/stock_db?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true",
+        "jdbcUser": "root",
+        "jdbcPassword": "123456"
+      }
+    },
+    {
+      "name": "adhoc",
+      "type": "map",
+      "tables": [
+        {
+          "name": "v_full_match",
+          "type": "view",
+          "sql": "SELECT u.\"id\" AS u_id, u.\"name\", u.\"age\", u.\"city\", f.\"id\" AS f_id, f.\"friend_name\", f.\"relation_type\" FROM \"mysql_db\".\"users1\" AS u JOIN \"mysql_db\".\"friends1\" AS f ON u.\"id\" = f.\"user_id\""
+        }
+      ]
+    }
+  ]
+}
