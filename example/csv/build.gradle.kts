@@ -40,6 +40,15 @@ dependencies {
     testImplementation("sqlline:sqlline")
     testImplementation(project(":testkit"))
 
+    // Added dependencies for federated query example
+    implementation(project(":mongodb"))
+    implementation(project(":elasticsearch"))
+    implementation(project(":kafka"))
+    implementation(project(":druid"))
+    implementation("mysql:mysql-connector-java:8.0.33")
+    implementation("org.apache.ignite:ignite-core:2.16.0")
+    implementation("org.apache.ignite:ignite-indexing:2.16.0") // Contains JDBC driver
+
     sqllineClasspath(project)
     sqllineClasspath(files(sourceSets.test.map { it.output }))
 
