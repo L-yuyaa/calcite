@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "defaultSchema": "adhoc",
+  "schemas": [
+    {
+      "name": "mysql_db",
+      "type": "custom",
+      "factory": "org.apache.calcite.adapter.jdbc.JdbcSchema$Factory",
+      "operand": {
+        "jdbcDriver": "com.mysql.cj.jdbc.Driver",
+        "jdbcUrl": "jdbc:mysql://localhost:3306/stock_db?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8",
+        "jdbcUser": "root",
+        "jdbcPassword": "123456"
+      }
+    },
+    {
+      "name": "ignite_db",
+      "type": "custom",
+      "factory": "org.apache.calcite.adapter.jdbc.JdbcSchema$Factory",
+      "operand": {
+        "jdbcDriver": "org.apache.ignite.IgniteJdbcThinDriver",
+        "jdbcUrl": "jdbc:ignite:thin://127.0.0.1:10800?schema=PUBLIC"
+      }
+    },
+    {
+      "name": "adhoc",
+      "type": "map",
+      "tables": [
+        {
+          "name": "V_STOCK_REPORT",
+          "type": "view",
+          "sql": "SELECT u.\"cust_id\", u.\"cust_name\", u.\"risk_level\", p.\"SEC_CODE\", p.\"MARKET_VAL\" FROM \"mysql_db\".\"users_base\" AS u JOIN \"ignite_db\".\"POSITION_LIVE\" AS p ON u.\"cust_id\" = p.\"CUST_ID\""
+        }
+      ]
+    }
+  ]
+}
