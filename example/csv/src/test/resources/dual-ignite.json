@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "defaultSchema": "IGNITE1",
+  "schemas": [
+    {
+      "name": "IGNITE1",
+      "type": "custom",
+      "factory": "org.apache.calcite.adapter.jdbc.JdbcSchema$Factory",
+      "operand": {
+        "jdbcDriver": "org.apache.ignite.IgniteJdbcThinDriver",
+        "jdbcUrl": "jdbc:ignite:thin://127.0.0.1:10800?schema=PUBLIC"
+      }
+    },
+    {
+      "name": "IGNITE2",
+      "type": "custom",
+      "factory": "org.apache.calcite.adapter.jdbc.JdbcSchema$Factory",
+      "operand": {
+        "jdbcDriver": "org.apache.ignite.IgniteJdbcThinDriver",
+        "jdbcUrl": "jdbc:ignite:thin://127.0.0.1:10801?schema=PUBLIC"
+      }
+    }
+  ]
+}
