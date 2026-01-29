@@ -24,7 +24,7 @@ public class JoinFederatedQueryTest {
             Statement statement = connection.createStatement();
 
             // 2. 执行关联查询：获取所有字段
-            String sql = "SELECT * FROM \"adhoc\".\"v_full_match\" WHERE \"friend_name\" = 'zs'";
+            String sql = "SELECT * FROM adhoc.v_full_match WHERE friend_name = 'zs'";
 
             System.out.println("--- 执行全字段关联查询 ---");
 
