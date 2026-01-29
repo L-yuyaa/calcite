@@ -23,6 +23,8 @@ import java.util.Properties;
 import java.io.File;
 
 public class StockFederatedTest {
+
+    //MySQL + Ignite 跨数据源 JOIN
     @Test
     public void testStockJoin() throws Exception {
         // 1. 设置字符集，解决证券数据中的中文名称显示
