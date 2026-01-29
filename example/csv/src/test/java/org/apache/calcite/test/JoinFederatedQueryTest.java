@@ -6,6 +6,7 @@ import java.util.Properties;
 
 public class JoinFederatedQueryTest {
 
+    // MySQL 内部两表 JOIN（同库）
     @Test
     public void testFullDataQuery() throws Exception {
         // 1. 强制设定字符集，防止中文乱码
@@ -14,17 +15,17 @@ public class JoinFederatedQueryTest {
         Properties info = new Properties();
         // 获取配置文件路径
         String modelPath = JoinFederatedQueryTest.class.getResource("/dual-table-join.json").getPath();
-        
+
         info.put("model", modelPath);
         info.put("caseSensitive", "false");
         info.put("defaultCharset", "UTF-8");
 
         try (Connection connection = DriverManager.getConnection("jdbc:calcite:", info)) {
             Statement statement = connection.createStatement();
-            
+
             // 2. 执行关联查询：获取所有字段
             String sql = "SELECT * FROM \"adhoc\".\"v_full_match\" WHERE \"friend_name\" = 'zs'";
-            
+
             System.out.println("--- 执行全字段关联查询 ---");
 
             try (ResultSet resultSet = statement.executeQuery(sql)) {
