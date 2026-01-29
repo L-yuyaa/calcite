@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "defaultSchema": "ignite",
+  "schemas": [
+    {
+      "name": "IGNITE",
+      "type": "custom",
+      "factory": "org.apache.calcite.adapter.jdbc.JdbcSchema$Factory",
+      "operand": {
+        "jdbcDriver": "org.apache.ignite.IgniteJdbcThinDriver",
+        "jdbcUrl": "jdbc:ignite:thin://127.0.0.1:10800?schema=PUBLIC"
+      }
+    }
+  ]
+}
